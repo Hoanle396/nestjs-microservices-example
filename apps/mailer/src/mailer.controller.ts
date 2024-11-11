@@ -15,7 +15,7 @@ export class MailerController {
 
   @MessagePattern('mail_send')
   mailSend(data: IEmailData): IMailSendResponse {
-    if (!this.configService.get('emailsDisabled')) {
+    if (!(this.configService.get('emailsDisabled') === 'true')) {
       this.mailerService.sendMail(data);
     }
     return {
